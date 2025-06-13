@@ -1,129 +1,95 @@
 const axios = require("axios");
-const availableCmdsUrl = "https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/availableCmds.json";
-const cmdUrlsJson = "https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/cmdUrls.json";
-const ITEMS_PER_PAGE = 10;
 
-module.exports.config = {
-  name: "cmdstore",
-  aliases: ["cs", "cmds"],
-  author: "Dipto",
-  role: 1,
-  version: "6.9",
-  description: {
-    en: "Commands Store of Dipto",
+module.exports = {
+  config: {
+    name: 'cmdstore',
+    version: '1.0',
+    author: 'Vex_Kshitiz',
+    role: 0,
+    shortDescription: 'store of cmds',
+    longDescription: 'store of cmds all  made by kshitiz',
+    category: 'utility',
+    guide: {
+      en: 'To view commands: {p}cmdstore\nTo paginate: {p}cmdstore {page}\nTo search: {p}cmdstore {search}'
+    }
   },
-  countDown: 3,
-  category: "goatbot",
-  guide: {
-    en: "{pn} [command name | single character | page number]",
-  },
-};
-module.exports.onStart = async function ({ api, event, args }) {
-  const query = args.join(" ").trim().toLowerCase();
-  try {
-    const response = await axios.get(availableCmdsUrl);
-    let cmds = response.data.cmdName;
-    let finalArray = cmds;
-    let page = 1;
 
-    if (query) {
-      if (!isNaN(query)) {
-        page = parseInt(query);
-      } else if (query.length === 1) {
-        finalArray = cmds.filter(cmd => cmd.cmd.startsWith(query));
-        if (finalArray.length === 0) {
-          return api.sendMessage(`❌ | No commands found starting with "${query}".`, event.threadID, event.messageID);
-        }
-      } else {
-        finalArray = cmds.filter(cmd => cmd.cmd.includes(query));
-        if (finalArray.length === 0) {
-          return api.sendMessage(`❌ | Command "${query}" not found.`, event.threadID, event.messageID);
-        }
+  onStart: async function ({ api, event, args, message }) {
+    try {
+      let page = 1;
+      let searchQuery = "";
+
+      if (args.length === 1 && !isNaN(parseInt(args[0]))) {
+        page = parseInt(args[0]);
+      } else if (args.length === 1 && typeof args[0] === 'string') {
+        searchQuery = args[0];
+      } else if (args.length === 2 && args[0] === 'search' && typeof args[1] === 'string') {
+        searchQuery = args[1];
       }
-    }
 
-    const totalPages = Math.ceil(finalArray.length / ITEMS_PER_PAGE);
-    if (page < 1 || page > totalPages) {
-      return api.sendMessage(
-        `❌ | Invalid page number. Please enter a number between 1 and ${totalPages}.`,
-        event.threadID,
-        event.messageID
-      );
-    }
+      const response = await axios.get("https://cmd-store.vercel.app/kshitiz");
+      const commands = response.data;
 
-    const startIndex = (page - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const cmdsToShow = finalArray.slice(startIndex, endIndex);
-    let msg = `╭───✦ Cmd Store ✦───╮\n│ Page ${page} of ${totalPages} page(s)\n│ Total ${finalArray.length} commands\n`;
-    cmdsToShow.forEach((cmd, index) => {
-      msg += `│ ───✦ ${startIndex + index + 1}. ${cmd.cmd}\n│ AUTHOR: ${cmd.author}\n│ UPDATE: ${cmd.update || null}\n`;
-    });
-    msg += `╰─────────────⧕`;
+      let filteredCommands = commands;
+      if (searchQuery) {
+        filteredCommands = commands.filter(cmd => cmd.cmdName.toLowerCase().includes(searchQuery.toLowerCase()));
+      }
 
-    if (page < totalPages) {
-      msg += `\nType "${this.config.name} ${page + 1}" for more commands.`;
-    }
-    api.sendMessage(
-      msg,
-      event.threadID,
-      (error, info) => {
-global.GoatBot.onReply.set(info.messageID, {
-          commandName: this.config.name,
-          type: "reply",
+      const startIndex = (page - 1) * 10;
+      const endIndex = page * 10;
+      const paginatedCommands = filteredCommands.slice(startIndex, endIndex);
+
+      let replyMessage = "";
+      paginatedCommands.forEach(cmd => {
+        replyMessage += `
+        ð�—œð�——:${cmd.id}
+        ð�—–ð�— ð�——:${cmd.cmdName}
+        ð�—–ð�—¢ð�——ð�—˜:${cmd.codeLink}
+        ð�—œð�—¡ð�—™ð�—¢:${cmd.description}
+      ----------------------------------------------`;
+      });
+
+      if (replyMessage === "") {
+        replyMessage = "No commands found.";
+      }
+
+      message.reply(replyMessage, (err, info) => {
+        global.GoatBot.onReply.set(info.messageID, {
+          commandName: "cmdstore",
           messageID: info.messageID,
           author: event.senderID,
-          cmdName: finalArray,
-          page: page
+          commands,
         });
-      },
-      event.messageID
-    );
-    console.log(finalArray)
-  } catch (error) {
-    api.sendMessage(
-      "❌ | Failed to retrieve commands.",
-      event.threadID,
-      event.messageID
-    );
-  }
-};
-
-module.exports.onReply = async function ({ api, event, Reply }) {
-
-  if (Reply.author != event.senderID) {
-    return api.sendMessage("Who are you? 🐸", event.threadID, event.messageID);
-  }
-  const reply = parseInt(event.body);
-  const startIndex = (Reply.page - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-
-  if (isNaN(reply) || reply < startIndex + 1 || reply > endIndex) {
-    return api.sendMessage(
-      `❌ | Please reply with a number between ${startIndex + 1} and ${Math.min(endIndex, Reply.cmdName.length)}.`,
-      event.threadID,
-      event.messageID
-    );
-  }
-  try {
-  const cmdName = Reply.cmdName[reply - 1].cmd
-const  { status }  = Reply.cmdName[reply - 1]
-    const response = await axios.get(cmdUrlsJson);
-    const selectedCmdUrl = response.data[cmdName];
-    if (!selectedCmdUrl) {
-      return api.sendMessage(
-        "❌ | Command URL not found.",
-        event.threadID,
-        event.messageID
-      );
+      });
+    } catch (error) {
+      console.error(error);
+      message.reply("An error occurred while fetching commands.");
     }
-    api.unsendMessage(Reply.messageID);
-    const msg = `╭───────⭓\n│ STATUS :${status || null}\n│ Command Url: ${selectedCmdUrl}\n╰─────────────⭓`;
-    api.sendMessage(msg, event.threadID, event.messageID);
-  } catch (error) {
-    api.sendMessage(
-      "❌ | Failed to retrieve the command URL.",
-      event.threadID,
-      event.messageID
-    );
-  }
+  },
+
+  onReply: async function ({ api, event, Reply, args, message }) {
+    const { author, commandName, commands } = Reply;
+
+    if (event.senderID !== author || !commands) {
+      return;
+    }
+
+    const commandID = parseInt(args[0], 10);
+
+    if (isNaN(commandID) || !commands.some(cmd => cmd.id === commandID)) {
+      message.reply("Invalid input.\nPlease provide a valid command ID.");
+      return;
+    }
+
+    const selectedCommand = commands.find(cmd => cmd.id === commandID);
+
+    let replyMessage = `
+    ð�—œð�——:${selectedCommand.id}
+    ð�—–ð�— ð�——:${selectedCommand.cmdName}
+    ð�—–ð�—¢ð�——ð�—˜:${selectedCommand.codeLink}
+    ð�—œð�—¡ð�—™ð�—¢:${selectedCommand.description}`;
+
+    message.reply(replyMessage);
+    global.GoatBot.onReply.delete(event.messageID);
+  },
 };
