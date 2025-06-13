@@ -4,41 +4,59 @@ const fs = require("fs-extra");
 module.exports = {
   config: {
     name: "wanted",
-    aliases:["wan"],
-    version: "1.1",
-    author: "NTKhang",
-    countDown: 5,
+    version: "1.0",
+    author: "KSHITIZ",
+    countDown: 1,
     role: 0,
-    shortDescription: "wanted image",
-    longDescription: "wanted image",
-    category: "image",
-    guide: {
-      en: "{pn} @tag"
+    shortDescription: "wanted poster",
+    longDescription: "",
+    category: "meme",
+    guide: "{pn} {{[on | off]}}",
+    envConfig: {
+      deltaNext: 5
     }
   },
 
   langs: {
     vi: {
-      noTag: "Bạn phải tag người bạn muốn nhấn tay vào trán"
+      noTag: ""
     },
     en: {
-      noTag: "You must tag the person you want to wanted"
+      noTag: "You must tag the person you want to "
     }
   },
 
-  onStart: async function ({ event, message, usersData, args, getLang }) {
-    const uid1 = event.senderID;
-    const uid2 = Object.keys(event.mentions)[0];
-    if (!uid2)
-      return message.reply(getLang("noTag"));
-    const avatarURL2 = await usersData.getAvatarUrl(uid2);
-    const img = await new DIG.Wanted().getImage(avatarURL2);
-    const pathSave = `${__dirname}/tmp/${uid2}_Wanted.png`;
-    fs.writeFileSync(pathSave, Buffer.from(img));
-    const content = args.join(' ').replace(Object.keys(event.mentions)[0], "");
-    message.reply({
-      body: `${(content || "wanted moment!")} yawa`,
-      attachment: fs.createReadStream(pathSave)
+  onStart: async function ({ event, message, usersData, args, getLang }) 
+  {
+
+    let mention = Object.keys(event.mentions)
+    let uid;
+
+  
+
+    if(event.type == "message_reply"){
+    uid = event.messageReply.senderID
+    } else{
+      if (mention[0]){
+        uid = mention[0]
+      }else{
+        console.log(" jsjsj")
+        uid = event.senderID}
+    }
+
+let url = await usersData.getAvatarUrl(uid)
+let avt = await new DIG.Wanted().getImage(url)
+
+
+ 
+      const pathSave = `${__dirname}/tmp/wanted.png`;
+  fs.writeFileSync(pathSave, Buffer.from(avt));
+    let body = "NEPAL KO WANTED MANXE"
+    if(!mention[0]) body="NEPAL KO WANTED MANXE"
+    message.reply({body:body,
+attachment: fs.createReadStream(pathSave)
     }, () => fs.unlinkSync(pathSave));
+
+
   }
 };
