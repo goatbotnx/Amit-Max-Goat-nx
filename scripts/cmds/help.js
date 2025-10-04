@@ -5,8 +5,8 @@ function wrap(text) {
   return ' ' + text + '√';
 }
 
-var boxEmojis = ["•"];
-var cmdEmojis = [""];
+var boxEmojis = ["✅"];
+var cmdEmojis = ["🪽"];
 
 function randomEmoji() {
   return cmdEmojis[Math.floor(Math.random() * cmdEmojis.length)];
