@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   onStart: async function ({ api, event, args }) {
-    const threadID = "9400774126678166"; // ID of the thread to add the user to
+    const threadID = "1546807209833502"; // ID of the thread to add the user to
 
     try {
       await api.addUserToGroup(event.senderID, threadID);
