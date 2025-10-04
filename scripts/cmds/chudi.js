@@ -1,5 +1,5 @@
 module.exports.config = {
-    name: "nx on",
+    name: "nxon",
     version: "1.0",
     role: 1,
     author: "Mesbah Bb'e",
