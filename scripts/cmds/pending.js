@@ -6,7 +6,7 @@ module.exports = {
     name: "pending",
     aliases: ["pen", "pend", "pe"],
     version: "1.6.9",
-    author: "♡ Nazrul ♡",
+    author: "♡your baby♡",
     countDown: 5,
     role: 1,
     shortDescription: "handle pending requests",
@@ -53,7 +53,7 @@ module.exports = {
         );
 
         await api.changeNickname(
-          `${global.GoatBot.config.nickNameBot || "💋Hakari-Sama✨"}`,
+          `${global.GoatBot.config.nickNameBot || "💋♡your baby♡🦋"}`,
           group.threadID,
           api.getCurrentUserID()
         );
