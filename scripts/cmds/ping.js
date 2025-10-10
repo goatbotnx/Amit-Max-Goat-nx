@@ -20,6 +20,6 @@ module.exports = {
     const timeStart = Date.now();
     await api.sendMessage("𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴 𝗕𝗮𝗯𝘆 𝗽𝗶𝗻𝗴", event.threadID);
     const ping = Date.now() - timeStart;
-    api.sendMessage(`💋𝐇𝐚𝐤𝐚𝐫𝐢  𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝗽𝗶𝗻𝗴 ${ping} ☯︎`, event.threadID);
+    api.sendMessage(`💋 𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝗽𝗶𝗻𝗴 ${ping} ☯︎`, event.threadID);
   }
 };
