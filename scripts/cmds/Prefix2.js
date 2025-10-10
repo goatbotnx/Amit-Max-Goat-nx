@@ -28,10 +28,10 @@ module.exports.handleEvent = async function ({ event, api }) {
 📚 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩 𝐏𝐫𝐞𝐟𝐢𝐱: ${groupPrefix}
 
 ╭‣ 𝐀𝐝𝐦𝐢𝐧 👑
-╰‣ DBZ_MAHIN
+╰‣ Mâybê Nx
 
 ╭‣ 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 ⓕ
-╰‣ https://www.facebook.com/mdmahin.2026cr7wc
+╰‣  https://www.facebook.com/nx210.is.back 
 `.trim();
 
   return api.sendMessage(msg, threadID, messageID);
