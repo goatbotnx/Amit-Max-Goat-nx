@@ -47,7 +47,7 @@ module.exports.onStart = async function ({ api, event }) {
 🧠 𝗕𝗼𝘁 𝗠𝗼𝗼𝗱: ${mood}
 
 🖥️ 𝗖𝗣𝗨 𝗟𝗼𝗮𝗱: ${load}
-💾 𝗠𝗲𝗺𝗼𝗿𝘆: ${usedMem}MB / ${totalMem.toFixed(1)}MB
+💾 𝗠𝗲𝗺𝗼𝗿𝘆: ${usedMem}GB / ${totalMem.toFixed(1)}GB
 
 📡 𝗦𝘆𝘀𝘁𝗲𝗺 𝗦𝘁𝗮𝘁𝘂𝘀: ✅ 𝗢𝗡𝗟𝗜𝗡𝗘
 
