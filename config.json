@@ -12,26 +12,20 @@
   "antiInbox": false,
   "language": "en",
   "notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-  "nickNameBot": "orbit",
+  "nickNameBot": "‌♡your baby♡",
   "prefix": "/",
   "adminOnly": {
     "enable": false,
     "ignoreCommand": []
   },
   "adminBot": [
-    "100066867630344",
-    "",
-    ""
+    "100066867630344"
   ],
   "developers": [
-    "100066867630344",
-    "",
-    ""
+    "100066867630344"
   ],
   "premium": [
-    "100066867630344",
-    "",
-    ""
+    "100066867630344"
   ],
   "whiteListMode": {
     "enable": false,
