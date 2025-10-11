@@ -55,7 +55,7 @@ module.exports = {
 │ ├─ CPU: ${cpu}
 │ ├─ RAM: ${usedMem}GB / ${totalMem}GB
 │
-╰───「 Owner👑: Dbz_Mahin 」───
+╰───「 Owner👑:Mâybê Nx」───
       `;
 
       api.sendMessage(message, event.threadID);
