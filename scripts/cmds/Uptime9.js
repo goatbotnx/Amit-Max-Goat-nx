@@ -62,7 +62,7 @@ module.exports.onStart = async function ({ api, event }) {
 📶 𝗕𝗼𝘁 𝗘𝗻𝗲𝗿𝗴𝘆: ${energyBar}
 
 ╔═━━━━━🔒 𝗘𝗡𝗚𝗜𝗡𝗘 𝗖𝗢𝗥𝗘 ━━━━━═╗
-┃ This bot is powered by ⚡ JanBotX
+┃ This bot is powered by ⚡ NX
 ┃ Protected by 🧠 SmartAI
 ┃ Fully loaded, fully alive 💥
 ╚═━━━━━━━━━━━━━━━━━━━━━━═╝
