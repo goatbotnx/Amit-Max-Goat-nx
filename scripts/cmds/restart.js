@@ -20,10 +20,10 @@ module.exports = {
 
 	langs: {
 		vi: {
-			restartting: "🔄 | Đang khởi động lại bot..."
+			restartting: "🔄 | Đang khởi động lại bot..😈."
 		},
 		en: {
-			restartting: "🔄 | Restarting bot..."
+			restartting: "🔄 | Restarting bot...🥱"
 		}
 	},
 
