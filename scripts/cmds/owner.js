@@ -30,14 +30,14 @@ module.exports = {
     const mentions = [{ id, tag: name }];
     const info = `
 ⫷          O᩶w᩶n᩶e᩶r᩶ I᩶n᩶f᩶o᩶          ⫸
-┃ ☁️ 𝗡𝗮𝗺𝗲:     Mâybê Nx
+┃ ☁️ 𝗡𝗮𝗺𝗲:     JUNA IRA
 ┃ ⚙️ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲:  💋♡your baby♡💌🦋 くめ
 ┃ 🎂 𝗔𝗴𝗲:             18
-┃ 🧠 𝗖𝗹𝗮𝘀𝘀:           Continues work
+┃ 🧠 𝗖𝗹𝗮𝘀𝘀:           PRIVATE
 ┃ ❤️ 𝗥𝗲𝗹𝗮𝘁𝗶𝗼𝗻:      Single 
-┃ ♂️ 𝗚𝗲𝗻𝗱𝗲𝗿:         Male
-┃ 🏠 𝗙𝗿𝗼𝗺:           Narsingdi 
-┃ 💬 𝗠𝗲𝘀𝘀𝗲𝗻𝗴𝗲𝗿:     https://m.me/nx210.is.back 
+┃ ♂️ 𝗚𝗲𝗻𝗱𝗲𝗿:         FEMALE
+┃ 🏠 𝗙𝗿𝗼𝗺:           RAJSHAHI
+┃ 💬 𝗠𝗲𝘀𝘀𝗲𝗻𝗴𝗲𝗿:     nai😒🔪
 ♡ 𝐓𝐡𝐚𝐧𝐤𝐬 𝐟𝐨𝐫 𝐮𝐬𝐢𝐧𝐠 𝐦𝐲 𝐛𝐨𝐭 ♡
     `.trim();
     message.reply({
