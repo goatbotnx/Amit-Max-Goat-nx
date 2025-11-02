@@ -5,7 +5,7 @@ module.exports = {
         version: "1.0",
         author: "NTKhang",
         countDown: 5,
-        role: 1, // Admin/moderator only
+        role: 2, // Admin/moderator only
         description: {
             en: "Set, add, or remove money for a user"
         },
