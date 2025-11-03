@@ -24,12 +24,12 @@ module.exports = {
     
     const a = "juna ira bot ";
     const b = "/"; // Prefix
-    const c = "〲JUNA IRAツ";
+    const c = "〲JUNAIRAツ";
     const e = "Female";
-    const f = "𝟏𝟖";
+    const f = "15";
     const g = "𝐒𝐢𝐧𝐠𝐥𝐞";
-    const h = "continues work";
-    const i = "Narsingdi";
+    const h = "9";
+    const i = "thakurgaon";
     const d = "N/A";
 
     message.reply({ 
