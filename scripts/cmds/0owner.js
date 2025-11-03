@@ -30,7 +30,7 @@ module.exports = {
     const g = "𝐒𝐢𝐧𝐠𝐥𝐞";
     const h = "9";
     const i = "thakurgaon";
-    const d = "N/A";
+    const d = "https://www.facebook.com/jisa.jioki";
 
     message.reply({ 
       body: `᯽ ${name} ᯽
