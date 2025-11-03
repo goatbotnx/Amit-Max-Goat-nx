@@ -7,7 +7,7 @@ const mahmud = async () => {
 
 module.exports = {
   config: {
-    name: "ai",
+    name: "nxai",
     version: "1.7",
     author: "MahMUD",
     countDown: 5,
